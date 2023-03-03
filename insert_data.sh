@@ -46,7 +46,20 @@ do
       TEAM_NAME_O=$($PSQL "SELECT name FROM teams WHERE name='$OPPONENT'")
     fi
   fi
+
+TEAM_ID_W=$($PSQL "SELECT team_id FROM teams WHERE name='$TEAM_NAME_W'")
+
+TEAM_ID_O=$($PSQL "SELECT team_id FROM teams WHERE name='$TEAM_NAME_O'")
+
+if [[ -n $TEAM_ID_W || -n $TEAM_ID_O ]]
+then
+  if [[ $YEAR != 'year' ]]
+  then
+  INSERT_GAME=$($PSQL "INSERT INTO games(year,round,winner_id,opponent_id,winner_goals,opponent_goals) VALUES($YEAR,'$ROUND',$TEAM_ID_W,$TEAM_ID_O,$WINNER_GOALS,$OPPONENT_GOALS)")
+  fi
+fi
   
 done
 
 echo $($PSQL "SELECT * FROM teams;")
+echo $($PSQL "SELECT * FROM games;")
