@@ -19,31 +19,31 @@ do
   if [[ $WINNER != 'winner' ]]
   then
     #get team name
-    TEAM_NAME=$($PSQL "SELECT name FROM teams WHERE name='$WINNER'")
+    TEAM_NAME_W=$($PSQL "SELECT name FROM teams WHERE name='$WINNER'")
     
     #if not found
-    if [[ -z $TEAM_NAME ]]
+    if [[ -z $TEAM_NAME_W ]]
     then
       #insert team
-      TEAM_NAME_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$WINNER')")
+      INSERT_TEAM_NAME_W=$($PSQL "INSERT INTO teams(name) VALUES('$WINNER')")
       
       #get new team name 
-      TEAM_NAME=$($PSQL "SELECT name FROM teams WHERE name='$WINNER'")
+      TEAM_NAME_W=$($PSQL "SELECT name FROM teams WHERE name='$WINNER'")
     fi
   fi
   if [[ $OPPONENT != 'opponent' ]]
   then
     #get team name
-    TEAM_NAME=$($PSQL "SELECT name FROM teams WHERE name='$OPPONENT'")
+    TEAM_NAME_O=$($PSQL "SELECT name FROM teams WHERE name='$OPPONENT'")
     
     #if not found
-    if [[ -z $TEAM_NAME ]]
+    if [[ -z $TEAM_NAME_O ]]
     then
       #insert team
-      TEAM_NAME_RESULT=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
+      INSERT_TEAM_NAME_O=$($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')")
       
       #get new team name 
-      TEAM_NAME=$($PSQL "SELECT name FROM teams WHERE name='$OPPONENT'")
+      TEAM_NAME_O=$($PSQL "SELECT name FROM teams WHERE name='$OPPONENT'")
     fi
   fi
   
