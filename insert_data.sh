@@ -47,6 +47,8 @@ do
     fi
   fi
 
+# -- the following code used help from Youtuber Maria Camila Barona Martinez
+
 TEAM_ID_W=$($PSQL "SELECT team_id FROM teams WHERE name='$TEAM_NAME_W'")
 
 TEAM_ID_O=$($PSQL "SELECT team_id FROM teams WHERE name='$TEAM_NAME_O'")
